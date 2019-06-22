@@ -16,9 +16,9 @@ Status](https://travis-ci.org/MikeJohnPage/newsrivr.svg?branch=master)](https://
 
 newsrivr is a R wrapper to the [Newsriver API](https://newsriver.io/),
 providing simple functions to retrieve and clean news articles following
-a tidy framework. It is free for non-commercial purposes, and when
-combined with newsrivr, can return over 350,000 articles in a single
-call.
+a tidy framework. The Newsriver API is free for non-commercial purposes,
+and when combined with newsrivr, can return over 350,000 articles in a
+single call.
 
 ## Installation
 
@@ -143,7 +143,7 @@ get\_news, returning a tidy tibble with sensible defaults.
 news <- get_news(query = "Google")
 
 clean_news(news)
-#> # A tibble: 1,599 x 4
+#> # A tibble: 89 x 4
 #>   text                  title                discoverDate website.domainNa…
 #>   <chr>                 <chr>                <date>       <chr>            
 #> 1 google is not just t… how google collects… 2019-05-23   practicalecommer…
@@ -151,10 +151,10 @@ clean_news(news)
 #> 3 it was more than a y… google pay and assi… 2019-05-23   slashgear.com    
 #> 4 one of the things go… google search, maps… 2019-05-24   ubergizmo.com    
 #> 5 google’s radical new… google rolls out ra… 2019-05-23   forbes.com       
-#> # … with 1,594 more rows
+#> # … with 84 more rows
 ```
 
 ## Getting help
 
 If you encounter a clear bug, please file a minimal reproducible example
-on [github](https://github.com/MikeJohnPage/newsrivr/issues).
+in [issues](https://github.com/MikeJohnPage/newsrivr/issues).

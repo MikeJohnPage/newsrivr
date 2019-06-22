@@ -23,7 +23,7 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 ## Overview
 
-newsrivr is a R wrapper to the [Newsriver API](https://newsriver.io/), providing simple functions to retrieve and clean news articles following a tidy framework. It is free for non-commercial purposes, and when combined with newsrivr, can return over 350,000 articles in a single call.
+newsrivr is a R wrapper to the [Newsriver API](https://newsriver.io/), providing simple functions to retrieve and clean news articles following a tidy framework. The Newsriver API is free for non-commercial purposes, and when combined with newsrivr, can return over 350,000 articles in a single call.
 
 ## Installation
 
@@ -88,4 +88,4 @@ clean_news(news)
 
 ## Getting help
 
-If you encounter a clear bug, please file a minimal reproducible example on [github](https://github.com/MikeJohnPage/newsrivr/issues).
+If you encounter a clear bug, please file a minimal reproducible example in [issues](https://github.com/MikeJohnPage/newsrivr/issues).
