@@ -1,0 +1,26 @@
+Package: newsrivr
+Title: Newsriver API R Client
+Version: 0.0.0.9000
+Authors@R: as.person(
+    "Michael Page <m.page.j@gmail.com> [aut, cre]")
+Description: An R client to retrieve and clean news articles from the Newsriver
+    API following a tidy framework.
+License: MIT + file LICENSE
+URL: https://github.com/mikejohnpage/newsrivr
+BugReports: https://github.com/mikejohnpage/newsrivr/issues 
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    askpass,
+    dplyr,
+    httr,
+    jsonlite,
+    lubridate,
+    purrr,
+    rlang,
+    stats,
+    tibble,
+    utils
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
