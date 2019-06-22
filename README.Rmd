@@ -1,0 +1,91 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+options(tibble.print_min = 5, tibble.print_max = 5)
+```
+
+# newsrivr <img src='man/figures/logo.png' align="right" height="139" /></a>
+
+<!-- badges: start -->
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) 
+[![Build Status](https://travis-ci.org/MikeJohnPage/newsrivr.svg?branch=master)](https://travis-ci.org/MikeJohnPage/newsrivr)
+<!-- badges: end -->
+
+## Overview
+
+newsrivr is a R wrapper to the [Newsriver API](https://newsriver.io/), providing simple functions to retrieve and clean news articles following a tidy framework. It is free for non-commercial purposes, and when combined with newsrivr, can return over 350,000 articles in a single call.
+
+## Installation
+
+You can install the development version from GitHub with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("MikeJohnPage/newsrivr")
+```
+
+## Usage
+
+newsrivr follows a simple workflow: (1) store credentials, (2) retrieve news, (3) clean news.
+
+### Storing credentials
+
+To access the Newsriver API, you will need to (freely) register an [API token](https://console.newsriver.io/api-token). In addition to an API token, you are also required to provide a user agent to use the newsrivr package. This allows Newsriver to identify who is using the API (and is important if something goes wrong). A good default user agent is your email address. To make your credentials available to newsrivr at every session, use the `store_credentials()` function, which will prompt you for your API token and user agent and then append them to a `.Renviron` file located in your home directory:
+
+```{r, eval = FALSE}
+library(newsrivr)
+
+# you will be prompted for your credentials
+store_creds()
+```
+
+If you would not like newsrivr to alter your `.Renviron` file, you can use the `store_creds_temp()` which just makes the credentials available for the current R session only:
+
+```{r, eval = FALSE}
+# you will be prompted for your credentials
+store_creds_temp()
+```
+
+Alternatively, you can manually pass your API token and user credentials into the relevant newsrivr functions (below), however, this isn't recommended as credentials can accidentally get leaked in scripts and `.Rhistory`
+files. See the `?store_credentials` documentation for more information.
+
+### Retrieving news
+
+The `get_news()` function returns news articles from the Newsriver API matching a user provided search query. This query allows users to search across the title and text fields of news articles. See the `?get_news` documentation for more information:
+
+```{r, include = FALSE}
+library(newsrivr)
+```
+
+
+```{r, warning = FALSE}
+get_news(query = "Google")
+
+get_news("Google", from = "2019-05-01", to = "2019-06-01")
+
+get_news("title:Google AND text:\"Google Cloud\"", language = "it")
+```
+
+### Cleaning news
+
+The `clean_news()` function wrangles the messy data fetched by get_news, returning a tidy tibble with sensible defaults.
+
+```{r, warning = FALSE}
+news <- get_news(query = "Google")
+
+clean_news(news)
+```
+
+## Getting help
+
+If you encounter a clear bug, please file a minimal reproducible example on [github](https://github.com/MikeJohnPage/newsrivr/issues).
