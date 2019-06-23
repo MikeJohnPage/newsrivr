@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-options(tibble.print_min = 5, tibble.print_max = 5)
+options(tibble.print_min = 5, tibble.print_max = 5, tibble.max_extra_cols = 0)
 ```
 
 # newsrivr <img src='man/figures/logo.png' align="right" height="139" /></a>
@@ -23,7 +23,7 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 ## Overview
 
-newsrivr is a R wrapper to the [Newsriver API](https://newsriver.io/), providing simple functions to retrieve and clean news articles following a tidy framework. The Newsriver API is free for non-commercial purposes, and when combined with newsrivr, can return over 350,000 articles in a single call.
+newsrivr is an R wrapper to the [Newsriver API](https://newsriver.io/), providing simple functions to retrieve and clean news articles following a tidy framework. Newsriver is a non profit free of charge news API (for commercial purposes, a monthly subscription is encouraged), and when combined with the newsrivr R package, can return up to 36,500 articles in a single search.
 
 ## Installation
 
@@ -36,11 +36,11 @@ devtools::install_github("MikeJohnPage/newsrivr")
 
 ## Usage
 
-newsrivr follows a simple workflow: (1) store credentials, (2) retrieve news, (3) clean news.
+The newsrivr workflow is simple: (1) store credentials, (2) retrieve news, (3) clean news.
 
-### Storing credentials
+### Store credentials
 
-To access the Newsriver API, you will need to (freely) register an [API token](https://console.newsriver.io/api-token). In addition to an API token, you are also required to provide a user agent to use the newsrivr package. This allows Newsriver to identify who is using the API (and is important if something goes wrong). A good default user agent is your email address. To make your credentials available to newsrivr at every session, use the `store_credentials()` function, which will prompt you for your API token and user agent and then append them to a `.Renviron` file located in your home directory:
+To access the Newsriver API, you need to register an [API token](https://console.newsriver.io/api-token). In addition, you are also required to provide a user agent when using the newsrivr package. This allows Newsriver to identify who is using the API (and is important if something goes wrong). A good default user agent is your email address. To make your credentials available to newsrivr at every session, use the `store_credentials()` function, which will prompt you for your API token and user agent and then append them to a `.Renviron` file located in your home directory (note, you should only do this once):
 
 ```{r, eval = FALSE}
 library(newsrivr)
@@ -49,7 +49,7 @@ library(newsrivr)
 store_creds()
 ```
 
-If you would not like newsrivr to alter your `.Renviron` file, you can use the `store_creds_temp()` which just makes the credentials available for the current R session only:
+If you would not like newsrivr to alter your `.Renviron` file, you can use the `store_creds_temp()` which just makes the credentials available for the current R session only (note, you will have to do this at every session):
 
 ```{r, eval = FALSE}
 # you will be prompted for your credentials
@@ -59,9 +59,9 @@ store_creds_temp()
 Alternatively, you can manually pass your API token and user credentials into the relevant newsrivr functions (below), however, this isn't recommended as credentials can accidentally get leaked in scripts and `.Rhistory`
 files. See the `?store_credentials` documentation for more information.
 
-### Retrieving news
+### Retrieve news
 
-The `get_news()` function returns news articles from the Newsriver API matching a user provided search query. This query allows users to search across the title and text fields of news articles. See the `?get_news` documentation for more information:
+The `get_news()` function returns news articles from the Newsriver API matching a user provided search query. These queries must be valid [Lucene query strings](https://lucene.apache.org/core/2_9_4/queryparsersyntax.html), with the option to search the title and text fields of articles. See the `?get_news` documentation for more information:
 
 ```{r, include = FALSE}
 library(newsrivr)
@@ -76,7 +76,7 @@ get_news("Google", from = "2019-05-01", to = "2019-06-01")
 get_news("title:Google AND text:\"Google Cloud\"", language = "it")
 ```
 
-### Cleaning news
+### Clean news
 
 The `clean_news()` function wrangles the messy data fetched by get_news, returning a tidy tibble with sensible defaults.
 
