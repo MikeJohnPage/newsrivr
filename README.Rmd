@@ -36,7 +36,7 @@ devtools::install_github("MikeJohnPage/newsrivr")
 
 ## Usage
 
-The newsrivr workflow is simple: (1) store credentials, (2) retrieve news, (3) clean news.
+newsrivr follows a simple workflow: (1) store credentials, (2) retrieve news, (3) clean news.
 
 ### Store credentials
 
@@ -78,7 +78,7 @@ get_news("title:Google AND text:\"Google Cloud\"", language = "it")
 
 ### Clean news
 
-The `clean_news()` function wrangles the messy data fetched by get_news, returning a tidy tibble with sensible defaults.
+The `clean_news()` function wrangles the messy data fetched by `get_news()`, returning a tidy tibble with sensible defaults.
 
 ```{r, warning = FALSE}
 news <- get_news(query = "Google")

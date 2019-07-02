@@ -32,7 +32,7 @@ devtools::install_github("MikeJohnPage/newsrivr")
 
 ## Usage
 
-The newsrivr workflow is simple: (1) store credentials, (2) retrieve
+newsrivr follows a simple workflow: (1) store credentials, (2) retrieve
 news, (3) clean news.
 
 ### Store credentials
@@ -82,15 +82,15 @@ with the option to search the title and text fields of articles. See the
 
 ``` r
 get_news(query = "Google")
-#> # A tibble: 3,200 x 26
+#> # A tibble: 3,100 x 26
 #>   id    publishDate discoverDate title language text  structuredText url  
 #>   <chr> <chr>       <chr>        <chr> <chr>    <chr> <chr>          <chr>
-#> 1 QMTZ… 2019-05-23… 2019-05-23T… How … en       Goog… "<div> \n <p>… http…
-#> 2 pIPn… 2019-05-24… 2019-05-24T… Goog… en       Goog… "<div> \n <p>… http…
-#> 3 iSWA… 2019-05-23… 2019-05-23T… Goog… en       It w… "<div> \n <p>… http…
-#> 4 zRmU… 2019-05-01… 2019-05-24T… Goog… en       One … "<div>\n  One… http…
-#> 5 Ronp… <NA>        2019-05-23T… Pizz… en       Is i… "<div> \n <sp… http…
-#> # … with 3,195 more rows, and 18 more variables
+#> 1 EXlv… 2019-06-02… 2019-06-02T… Disp… en       "Hel… "<div> \n <p>… http…
+#> 2 dOvQ… 2019-06-03… 2019-06-03T… Goog… en       "An … "<div> \n <p>… http…
+#> 3 U4d0… 2014-02-25… 2019-06-03T… 8 Go… en       Any … "<div> \n <p>… http…
+#> 4 ikfM… 2012-12-08… 2019-06-03T… Goog… en       Yest… "<div> \n <p>… http…
+#> 5 Zuf8… 2017-04-03… 2019-06-03T… Goog… en       "Goo… "<div> \n <p>… http…
+#> # … with 3,095 more rows, and 18 more variables
 
 get_news("Google", from = "2019-05-01", to = "2019-06-01")
 #> # A tibble: 3,200 x 26
@@ -104,35 +104,35 @@ get_news("Google", from = "2019-05-01", to = "2019-06-01")
 #> # … with 3,195 more rows, and 18 more variables
 
 get_news("title:Google AND text:\"Google Cloud\"", language = "it")
-#> # A tibble: 2,806 x 24
+#> # A tibble: 2,670 x 24
 #>   id    publishDate discoverDate title language text  structuredText url  
 #>   <chr> <chr>       <chr>        <chr> <chr>    <chr> <chr>          <chr>
-#> 1 6fRj… 2019-05-23… 2019-05-23T… SAP … it       SAP … "<span> <p><a… http…
-#> 2 t98A… 2019-05-23… 2019-05-23T… Goog… it       Con … "<p>Con l’arr… http…
-#> 3 72ZT… 2019-05-23… 2019-05-23T… Sams… it       Sams… "<p>Samsung a… http…
-#> 4 eOHQ… 2019-05-23… 2019-05-23T… Adob… it       Disp… "<div> \n <p>… http…
-#> 5 GBty… 2019-05-23… 2019-05-23T… Veea… it       Veea… "<div> \n <p>… http…
-#> # … with 2,801 more rows, and 16 more variables
+#> 1 Qbfr… 2019-06-02… 2019-06-03T… Avay… it       Avay… "<div> \n <p>… http…
+#> 2 2_eR… 2019-06-03… 2019-06-03T… La p… it       Un p… "<div> \n <p>… http…
+#> 3 VWo8… 2019-06-03… 2019-06-03T… La p… it       Live… "<div> \n <p>… http…
+#> 4 Wsvb… 2019-06-03… 2019-06-03T… Guid… it       "Son… "<div> \n <p>… http…
+#> 5 OuAo… 2019-06-03… 2019-06-03T… Stad… it       "All… "<div> \n <p>… http…
+#> # … with 2,665 more rows, and 16 more variables
 ```
 
 ### Clean news
 
 The `clean_news()` function wrangles the messy data fetched by
-get\_news, returning a tidy tibble with sensible defaults.
+`get_news()`, returning a tidy tibble with sensible defaults.
 
 ``` r
 news <- get_news(query = "Google")
 
 clean_news(news)
-#> # A tibble: 1,626 x 4
-#>   text                  title                discoverDate website.domainNa…
-#>   <chr>                 <chr>                <date>       <chr>            
-#> 1 google is not just t… how google collects… 2019-05-23   practicalecommer…
-#> 2 google has officiall… google releases gro… 2019-05-24   bgr.in           
-#> 3 it was more than a y… google pay and assi… 2019-05-23   slashgear.com    
-#> 4 one of the things go… google search, maps… 2019-05-24   ubergizmo.com    
-#> 5 google’s radical new… google rolls out ra… 2019-05-23   forbes.com       
-#> # … with 1,621 more rows
+#> # A tibble: 1,542 x 4
+#>   text                  title                 discoverDate website.domainN…
+#>   <chr>                 <chr>                 <date>       <chr>           
+#> 1 "hello,    i have mu… displaying current g… 2019-06-02   spotify.com     
+#> 2 "an outage of google… google cloud back to… 2019-06-03   androidcentral.…
+#> 3 any google apps admi… 8 google apps admin … 2019-06-03   bettercloud.com 
+#> 4 yesterday, google di… google ends free goo… 2019-06-03   bettercloud.com 
+#> 5 "google have been ex… google to launch a r… 2019-06-03   madebymagnitude…
+#> # … with 1,537 more rows
 ```
 
 ## Getting help
