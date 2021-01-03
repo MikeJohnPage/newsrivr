@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# IMPORTANT UPDATE: unfortunately, the newsriver API is being discontinued at the end of January 2021. Existing accounts will still function until this date.
+
 # newsrivr <img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
